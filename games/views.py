@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework import status
+from rest_framework.decorators import api_view
 from games.models import Game
 from games.serializers import GameSerializer
 
@@ -55,3 +56,7 @@ def game_detail(request, pk):
     elif request.method == 'DELETE':
         game.delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
+    
+@api_view()
+def hello_world(request):
+    return Response(2015+4)
